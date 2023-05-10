@@ -18,32 +18,10 @@ const slides = [
 ]
 
 const bannerImg = document.querySelector('.banner-img')
-let currentSlide = 0
-
 const tagLine = document.querySelector('.banner-tagline')
-let currentDots = 0
-console.log(tagLine)
-
-const leftArrow = document.querySelector(".arrow_left")
-leftArrow.addEventListener('click', function (){
-	 currentSlide = currentSlide-1
-	bannerImg.src="assets/images/slideshow/"+slides[currentSlide].image
-	tagLine.innerHTML=slides[currentSlide].tagLine
-})
-
-const rightArrow = document.querySelector(".arrow_right")
-rightArrow.addEventListener('click', function (){
-	currentSlide = currentSlide+1
-	bannerImg.src="assets/images/slideshow/"+slides[currentSlide].image
-	tagLine.innerHTML=slides[currentSlide].tagLine
-})
-
-
-
 const nbSlides = slides.length
-console.log(nbSlides)
 const dots = document.querySelector('.dots')
-console.log (dots.innerHTML)
+let currentSlide = 0
 
 for(let i = 0; i < nbSlides; i++){
 	if(i == 0){
@@ -53,44 +31,49 @@ for(let i = 0; i < nbSlides; i++){
 		dots.innerHTML += '<div class="dot"> </div>'
 	}
 }
-/*
-document.querySelector('.dots');
-    let elements = Array.from(container.children);
-    console.log(elements);
-    let dotdot = click ;
-    let dotselect = elements[dotdot];
-    console.log(dotselect);
-    dotselect.classList.add('dot_selected');
 
 
-function bulletsBack(){
-	currentDots = currentDots-1
-	dots[currentDots] += '<div class="dot dot_selected"> </div>'
-}
+const leftArrow = document.querySelector(".arrow_left")
+leftArrow.addEventListener('click', function (){
+	if(currentSlide == 0){
+		currentSlide = slides.length-1
+	}
+	else{
+		currentSlide = currentSlide-1
+	}
+	bannerImg.src="assets/images/slideshow/"+slides[currentSlide].image
+	tagLine.innerHTML=slides[currentSlide].tagLine
+	for(let i = 0; i < nbSlides; i++){
+		if(i == currentSlide){
+			dots.children[i].classList.add('dot_selected')
+		}
+		else{
+			dots.children[i].classList.remove('dot_selected')
+		}
+	}
+})
 
-function bulletsNext(){
-	currentDots = currentDots+1
-	dots[currentDots] += '<div class="dot dot_selected"> </div>'
-}
+const rightArrow = document.querySelector(".arrow_right")
+rightArrow.addEventListener('click', function (){
+	if(currentSlide == slides.length-1){
+		currentSlide = 0
+	}
+	else{
+		currentSlide = currentSlide+1
+	}
+	bannerImg.src="assets/images/slideshow/"+slides[currentSlide].image
+	tagLine.innerHTML=slides[currentSlide].tagLine
+	for(let i = 0; i < nbSlides; i++){
+		if(i == currentSlide){
+			dots.children[i].classList.add('dot_selected')
+		}
+		else{
+			dots.children[i].classList.remove('dot_selected')
+		}
+	}
+})
 
 
 
 
-document.querySelector('.dots');
-    let elements = Array.from(container.children);
-    console.log(elements);
-    let dotdot = click ;
-    let dotselect = elements[dotdot];
-    console.log(dotselect);
-    dotselect.classList.add('dot_selected');
 
-
-let dotadd = click ;
-    let dotrm =click -1;
-    let dotselect = elements[dotadd];
-    let dotremove =elements[dotrm];
-    console.log(dotselect);
-    dotselect.classList.add('dot_selected');
-    dotremove.classList.remove('dot_selected');
-
-*/
