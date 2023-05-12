@@ -22,6 +22,8 @@ const tagLine = document.querySelector('.banner-tagline')
 const nbSlides = slides.length
 const dots = document.querySelector('.dots')
 let currentSlide = 0
+const rightArrow = document.querySelector(".arrow_right")
+const leftArrow = document.querySelector(".arrow_left")
 
 for(let i = 0; i < nbSlides; i++){
 	if(i == 0){
@@ -33,7 +35,7 @@ for(let i = 0; i < nbSlides; i++){
 }
 
 
-const leftArrow = document.querySelector(".arrow_left")
+
 leftArrow.addEventListener('click', function (){
 	if(currentSlide == 0){
 		currentSlide = slides.length-1
@@ -53,7 +55,7 @@ leftArrow.addEventListener('click', function (){
 	}
 })
 
-const rightArrow = document.querySelector(".arrow_right")
+
 rightArrow.addEventListener('click', function (){
 	if(currentSlide == slides.length-1){
 		currentSlide = 0
